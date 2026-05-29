@@ -47,7 +47,7 @@ We provide the eval scripts for the main experiment, you can reproduce it direct
 cd llada
 bash eval_instruct.sh
 ```
-The main result is conducted on an Nvidia H200 140G GPU, we evaluate two variants of DSB: DSB(const.) and DSB (greedy), demonstrating the stable improvement of our method.
+The main result of LLaDA variants is conducted on an Nvidia H200 140G GPU, we evaluate two variants of DSB: DSB(const.) and DSB (greedy), demonstrating the stable improvement of our method.
 
 ![main result](asset/main_result.png)
 

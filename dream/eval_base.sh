@@ -155,7 +155,7 @@ steps=$((length / block_length))
 
 # baseline
 CUDA_VISIBLE_DEVICES=${device} accelerate launch eval.py --model dream \
-    --model_args pretrained=${model},max_new_tokens=${length},diffusion_steps=${length},block_length=${block_length},add_bos_token=true,alg=entropy,show_speed=True,outp_path=evals_results_${model_name}/baseline/${task}-ns0-${length}/results.jsonl \
+    --model_args pretrained=${model},max_new_tokens=${length},diffusion_steps=${length},block_length=${block_length},add_bos_token=true,alg=entropy,show_speed=True,escape_until=true,outp_path=evals_results_${model_name}/baseline/${task}-ns0-${length}/results.jsonl \
     --tasks ${task} \
     --num_fewshot ${num_fewshot} \
     --batch_size 1 \
@@ -165,7 +165,7 @@ CUDA_VISIBLE_DEVICES=${device} accelerate launch eval.py --model dream \
 
 # naive + parallel
 CUDA_VISIBLE_DEVICES=${device} accelerate launch eval.py --model dream \
-    --model_args pretrained=${model},max_new_tokens=${length},diffusion_steps=${steps},block_length=${block_length},add_bos_token=true,alg=confidence_threshold,threshold=0.9,show_speed=True,outp_path=evals_results_${model_name}/naive_parallel/${task}-ns0-${length}/results.jsonl \
+    --model_args pretrained=${model},max_new_tokens=${length},diffusion_steps=${steps},block_length=${block_length},add_bos_token=true,alg=confidence_threshold,threshold=0.9,show_speed=True,escape_until=true,outp_path=evals_results_${model_name}/naive_parallel/${task}-ns0-${length}/results.jsonl \
     --tasks ${task} \
     --num_fewshot ${num_fewshot} \
     --batch_size 1 \
@@ -174,7 +174,7 @@ CUDA_VISIBLE_DEVICES=${device} accelerate launch eval.py --model dream \
 
 # # dsb + parallel
 CUDA_VISIBLE_DEVICES=${device} accelerate launch eval.py --model dream \
-    --model_args pretrained=${model},max_new_tokens=${length},diffusion_steps=${steps},block_length=${block_length},add_bos_token=true,alg=confidence_threshold,threshold=0.9,dsb=true,show_speed=True,outp_path=evals_results_${model_name}/dsb_parallel/${task}-ns0-${length}/results.jsonl \
+    --model_args pretrained=${model},max_new_tokens=${length},diffusion_steps=${steps},block_length=${block_length},add_bos_token=true,alg=confidence_threshold,threshold=0.9,dsb=true,show_speed=True,escape_until=true,outp_path=evals_results_${model_name}/dsb_parallel/${task}-ns0-${length}/results.jsonl \
     --tasks ${task} \
     --num_fewshot ${num_fewshot} \
     --batch_size 1 \
@@ -183,7 +183,7 @@ CUDA_VISIBLE_DEVICES=${device} accelerate launch eval.py --model dream \
 
 # dsb + parallel + constant
 CUDA_VISIBLE_DEVICES=${device} accelerate launch eval.py --model dream \
-    --model_args pretrained=${model},max_new_tokens=${length},diffusion_steps=${steps},block_length=${block_length},add_bos_token=true,alg=confidence_threshold,threshold=0.9,dsb=true,max_block_length=${block_length},show_speed=True,outp_path=evals_results_${model_name}/dsb_parallel_constant/${task}-ns0-${length}/results.jsonl \
+    --model_args pretrained=${model},max_new_tokens=${length},diffusion_steps=${steps},block_length=${block_length},add_bos_token=true,alg=confidence_threshold,threshold=0.9,dsb=true,max_block_length=${block_length},show_speed=True,escape_until=true,outp_path=evals_results_${model_name}/dsb_parallel_constant/${task}-ns0-${length}/results.jsonl \
     --tasks ${task} \
     --num_fewshot ${num_fewshot} \
     --batch_size 1 \
@@ -192,7 +192,7 @@ CUDA_VISIBLE_DEVICES=${device} accelerate launch eval.py --model dream \
 
 # dual cache + parallel
 CUDA_VISIBLE_DEVICES=${device} accelerate launch eval.py --model dream \
-    --model_args pretrained=${model},max_new_tokens=${length},diffusion_steps=${steps},block_length=${block_length},add_bos_token=true,alg=confidence_threshold,threshold=0.9,use_cache=true,dual_cache=true,show_speed=True,outp_path=evals_results_${model_name}/dual_cache_parallel/${task}-ns0-${length}/results.jsonl \
+    --model_args pretrained=${model},max_new_tokens=${length},diffusion_steps=${steps},block_length=${block_length},add_bos_token=true,alg=confidence_threshold,threshold=0.9,use_cache=true,dual_cache=true,show_speed=True,escape_until=true,outp_path=evals_results_${model_name}/dual_cache_parallel/${task}-ns0-${length}/results.jsonl \
     --tasks ${task} \
     --num_fewshot ${num_fewshot} \
     --batch_size 1 \
@@ -201,7 +201,7 @@ CUDA_VISIBLE_DEVICES=${device} accelerate launch eval.py --model dream \
 
 # # dsb + cache + parallel
 CUDA_VISIBLE_DEVICES=0 accelerate launch eval.py --model dream \
-    --model_args pretrained=${model},max_new_tokens=${length},diffusion_steps=${steps},block_length=${block_length},add_bos_token=true,alg=confidence_threshold,threshold=0.9,prefix_window=4,dsb=true,use_cache=true,show_speed=True,outp_path=evals_results_${model_name}/dsb_cache_parallel/${task}-ns0-${length}/results.jsonl \
+    --model_args pretrained=${model},max_new_tokens=${length},diffusion_steps=${steps},block_length=${block_length},add_bos_token=true,alg=confidence_threshold,threshold=0.9,prefix_window=4,dsb=true,use_cache=true,show_speed=True,escape_until=true,outp_path=evals_results_${model_name}/dsb_cache_parallel/${task}-ns0-${length}/results.jsonl \
     --tasks ${task} \
     --num_fewshot ${num_fewshot} \
     --batch_size 1 \
@@ -210,7 +210,7 @@ CUDA_VISIBLE_DEVICES=0 accelerate launch eval.py --model dream \
 
 # dsb + cache + parallel + constant
 CUDA_VISIBLE_DEVICES=0 accelerate launch eval.py --model dream \
-    --model_args pretrained=${model},max_new_tokens=${length},diffusion_steps=${steps},block_length=${block_length},add_bos_token=true,alg=confidence_threshold,threshold=0.9,prefix_window=4,dsb=true,use_cache=true,max_block_length=${block_length},show_speed=True,outp_path=evals_results_${model_name}/dsb_cache_parallel_constant/${task}-ns0-${length}/results.jsonl \
+    --model_args pretrained=${model},max_new_tokens=${length},diffusion_steps=${steps},block_length=${block_length},add_bos_token=true,alg=confidence_threshold,threshold=0.9,prefix_window=4,dsb=true,use_cache=true,max_block_length=${block_length},show_speed=True,escape_until=true,outp_path=evals_results_${model_name}/dsb_cache_parallel_constant/${task}-ns0-${length}/results.jsonl \
     --tasks ${task} \
     --num_fewshot ${num_fewshot} \
     --batch_size 1 \
